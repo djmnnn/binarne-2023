@@ -1,15 +1,32 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
 int main()
 {
-    int n,b=1;
-    string bin="";
-    cin>>n;
-    while(n!=0)
+    fstream wejscie("bin.txt");
+    int wyndecy=0;
+    string bin,wyn;
+    for(int i=0;i<100;i++)
+    {
+        wejscie>>bin;
+        int p=0,decy=0;
+        for(int j=bin.size()-1;j>=0;j--)
+        {
+            decy+=(bin[j]-'0')*pow(2,p);
+            p++;
+        }
+        if(decy>wyndecy){
+            wyndecy=decy;
+            wyn=bin;}
+    }
+    cout<<wyn;
+
+
+    /*while(n!=0)
     {
         if(n%2==1)
         {
@@ -31,5 +48,5 @@ int main()
         if(bin[0]!=bin[1])
             b++;
     }
-    cout<<b;
+    cout<<b;*/
 }
