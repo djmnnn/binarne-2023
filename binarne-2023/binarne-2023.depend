@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1792049751 source:c:\users\uczeñ16\desktop\programy\binarne-2023\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+
