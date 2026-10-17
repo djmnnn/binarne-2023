@@ -5,18 +5,21 @@
 
 using namespace std;
 
-int hexdec(string hex)
+string decybin(int decy)
 {
-    int decy=0,p=0;
-    for(int i=hex.size()-1;i>=0;i--)
+    if(decy==0)
+        return "0";
+
+    string bin="";
+    while(decy>0)
     {
-        if(hex[i]>='0' && hex[i]<='9')
-            decy+=(hex[i]-'0')*pow(16,p);
-        else if(hex[i]>='A' && hex[i]<='F')
-            decy+=(hex[i]-'A'+10)*pow(16,p);
-        p++;
+        if(decy%2==0)
+            bin="0"+bin;
+        else
+            bin="1"+bin;
+        decy/=2;
     }
-    return decy;
+    return bin;
 }
 int bindecy(string bin)
 {
@@ -31,5 +34,14 @@ int bindecy(string bin)
 }
 int main()
 {
-    cout<<((123^bindecy("101101"))^hexdec("2D"));
+    ifstream wejscie("bin.txt");
+
+    string bin;
+    for(int i=0;i<100;i++)
+    {
+        wejscie>>bin;
+        cout<<decybin(bindecy(bin)^(bindecy(bin)/2))<<endl;
+    }
+
+    return 0;
 }
