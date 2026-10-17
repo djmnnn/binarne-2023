@@ -5,48 +5,31 @@
 
 using namespace std;
 
+int hexdec(string hex)
+{
+    int decy=0,p=0;
+    for(int i=hex.size()-1;i>=0;i--)
+    {
+        if(hex[i]>='0' && hex[i]<='9')
+            decy+=(hex[i]-'0')*pow(16,p);
+        else if(hex[i]>='A' && hex[i]<='F')
+            decy+=(hex[i]-'A'+10)*pow(16,p);
+        p++;
+    }
+    return decy;
+}
+int bindecy(string bin)
+{
+    int decy=0,p=0;
+    for(int i=bin.size()-1;i>=0;i--)
+    {
+        if(bin[i]=='1')
+            decy+=pow(2,p);
+        p++;
+    }
+    return decy;
+}
 int main()
 {
-    fstream wejscie("bin.txt");
-    int wyndecy=0;
-    string bin,wyn;
-    for(int i=0;i<100;i++)
-    {
-        wejscie>>bin;
-        int p=0,decy=0;
-        for(int j=bin.size()-1;j>=0;j--)
-        {
-            decy+=(bin[j]-'0')*pow(2,p);
-            p++;
-        }
-        if(decy>wyndecy){
-            wyndecy=decy;
-            wyn=bin;}
-    }
-    cout<<wyn;
-
-
-    /*while(n!=0)
-    {
-        if(n%2==1)
-        {
-            bin="1"+bin;
-        }
-        else
-            bin="0"+bin;
-        n/=2;
-    }
-    if(bin.size()>=3){
-    for(int i=0;i<bin.size()-1;i++)
-    {
-        if(bin[i]!=bin[i+1])
-            b++;
-    }
-    }
-    else if(bin.size()==2)
-    {
-        if(bin[0]!=bin[1])
-            b++;
-    }
-    cout<<b;*/
+    cout<<((123^bindecy("101101"))^hexdec("2D"));
 }
